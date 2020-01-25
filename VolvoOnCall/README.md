@@ -1,5 +1,6 @@
 # VolvoOnCall
-
+Anbindung von Volvo Fahrezugen an IP-Symcon. Auslesen von Fahrzeugdaten möglich.
+Modul befindet sich in der Entwicklung, ich versuche weitere Daten und Funktionen laufend hinzuzufügen.
 
 ### Inhaltsverzeichnis
 
@@ -14,8 +15,7 @@
 ### 1. Funktionsumfang
 
 * Anbindung von Volvo Fahrezugen an IP-Symcon. Auslesen vo Fahrzeugdaten möglich.
-* Das Modul ist noch Beta, es wird immer nur das erste Fahrzeug im Account ausgelesen.
-  Weitere Funktionen folgen.
+* Das Modul ist noch Beta, es wird immer nur das erste Fahrzeug im Account ausgelesen. Weitere Funktionen folgen.
 
 ### 2. Voraussetzungen
 
@@ -67,13 +67,12 @@ Volvo.FuelLevel  | Integer
 
 ### 6. WebFront
 
-Über das WebFront können die momentanen Werte der gelisteten Zielvariablen in einer Scene gespeichert werden.
-Über "Ausführen" können bereits gespeicherte Scenen aufgerufen werden.
+Über das WebFront können die momentanen Werte der gelisteten Zielvariablen angezeigt werden.
 
 ### 7. PHP-Befehlsreferenz
 
 `boolean VOC_Update(integer $InstanzID);`  
-Speichert die Werte der in der Liste vorhandenen Variablen in der entsprechenden Szene.  
+Aktuallisiert alle Daten.  
 Die Funktion liefert keinerlei Rückgabewert.  
 Beispiel:  
 `VOC_Update(12345);`
