@@ -1,0 +1,15 @@
+{
+	"id": "{103FC052-0528-6F87-937E-43195B7FC04C}",
+	"name": "VolvoOnCall",
+	"type": 3,
+	"vendor": "",
+	"aliases": 
+	[
+		"VolvoOnCall"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "VOC",
+	"url": ""
+}

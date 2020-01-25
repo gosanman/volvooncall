@@ -1,0 +1,11 @@
+{
+	"translations": {
+		"de": { 
+			"Google API Key": "Google API Schlüssel",
+			"Username": "Benutzername",
+			"Password": "Passwort",
+			"Interval (minutes)": "Intervall (Minuten)",
+			"Update": "Aktualisieren"
+		}
+	}
+}
