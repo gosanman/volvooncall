@@ -2,5 +2,5 @@
 
 Folgende Module beinhaltet das VolvoOnCall Repository:
 
-- __VolvoOnCall__ ([Dokumentation](volvooncall))  
+- __VolvoOnCall__ ([Dokumentation](volvooncall/README.md))  
 	Anbindung von Volvo Fahrzeugen an IP-Symcon. Auslesen der Fahrzeugdaten und vieles mehr möglich.
