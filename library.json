@@ -2,7 +2,7 @@
 	"id": "{83B6763F-B8D0-8100-537E-897686B611AC}",
 	"author": "sanman",
 	"name": "VolvoOnCall",
-	"url": "",
+	"url": "https://github.com/gosanman/volvooncall",
 	"compatibility": {
 		"version": "5.0"
 	},
