@@ -72,7 +72,6 @@ Volvo.FuelLevel  | Integer
 ### 7. PHP-Befehlsreferenz
 
 `boolean VOC_Update(integer $InstanzID);`  
-Aktuallisiert alle Daten.  
-Die Funktion liefert keinerlei Rückgabewert.  
+Aktuallisiert alle Daten. Die Funktion liefert keinerlei Rückgabewert.  
 Beispiel:  
 `VOC_Update(12345);`
