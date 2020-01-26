@@ -14,7 +14,7 @@ Modul befindet sich in der Entwicklung, ich versuche weitere Daten und Funktione
 
 ### 1. Funktionsumfang
 
-* Anbindung von Volvo Fahrezugen an IP-Symcon. Auslesen vo Fahrzeugdaten möglich.
+* Anbindung von Volvo Fahrezugen an IP-Symcon. Auslesen von Fahrzeugdaten möglich.
 * Das Modul ist noch Beta, es wird immer nur das erste Fahrzeug im Account ausgelesen. Weitere Funktionen folgen.
 
 ### 2. Voraussetzungen
