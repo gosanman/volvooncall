@@ -8,7 +8,7 @@
 		{ "name": "GoogleApiKey", "type": "ValidationTextBox", "caption": "Google API Key" },
 		{ "name": "Username", "type": "ValidationTextBox", "caption": "Username" },
 		{ "name": "Password", "type": "PasswordTextBox", "caption": "Password" },
-		{ "name": "Interval", "type": "ValidationTextBox", "caption": "Interval (minutes)" }
+		{ "name": "Interval", "type": "NumberSpinner", "caption": "Interval", "suffix": "Minuten" }
 	],
 	"actions":
     [
