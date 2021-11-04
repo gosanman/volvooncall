@@ -7,12 +7,12 @@ declare(strict_types=1);
         public function Create() {
             parent::Create();
 
-            $this->RegisterPropertyString('GoogleApiKey', "");
-            $this->RegisterPropertyString('Username', "");
-			$this->RegisterPropertyString('Password', "");
-			$this->RegisterPropertyInteger('Interval', 5);
+            	$this->RegisterPropertyString('GoogleApiKey', "");
+            	$this->RegisterPropertyString('Username', "");
+		$this->RegisterPropertyString('Password', "");
+		$this->RegisterPropertyInteger('Interval', 5);
 			
-			$this->RegisterTimer('UpdateTimer', 0, 'VOC_Update($_IPS[\'TARGET\']);');
+		$this->RegisterTimer('UpdateTimer', 0, 'VOC_Update($_IPS[\'TARGET\']);');
         }
 
         public function ApplyChanges() {
@@ -68,7 +68,10 @@ declare(strict_types=1);
 			}
 			if (!@$this->GetIDForIdent('odoMeter')) {
 				$this->RegisterVariableInteger('odoMeter', 'odoMeter', 'Volvo.Distance', 0);
-			}				
+			}
+			if (!@$this->GetIDForIdent('carLocked')) {
+				$this->RegisterVariableBoolean('carLocked', 'carLocked', '~Lock', 0);
+			}
         }
 
         public function RequestAction($Ident, $Value) {
@@ -180,6 +183,7 @@ declare(strict_types=1);
 			//$status["engineRunning"];
 			//$status["engineRunningTimestamp"];
 
+			SetValue($this->GetIDForIdent('carLocked'), $status["carLocked"]);
 			//$status["carLocked"];
 			//$status["carLockedTimestamp"];
 
