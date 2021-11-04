@@ -52,7 +52,7 @@ distanceToEmpty     | Integer   | Anzeige wieviele km noch mit dem aktuellen Tan
 fuelAmount          | Integer   | Anzeige des aktuellen Tankinhaltes in Liter
 fuelAmountLevel     | Integer   | Anzeige des aktuellen Tankinhaltes in Prozent
 odoMeter            | Integer   | Gesamtkilomenterstand
-carLocked           | Boolea    | Anzeige ob das Auto verriegelt ist
+carLocked           | Boolean   | Anzeige ob das Auto verriegelt ist
 positionLatitude    | String    | Aktuelle Position des Autos (Breitengrad)
 positionLongitude   | String    | Aktuelle Position des Autos (Längengrad)
 positionPic         | String    | Google Maps Integration für das Webfront (API Key wird zwingend benötigt)
