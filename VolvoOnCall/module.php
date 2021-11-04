@@ -1,12 +1,66 @@
 <?php
 
-declare(strict_types=1);
+    declare(strict_types=1);
 
     class VolvoOnCall extends IPSModule {
 		
         public function Create() {
-            parent::Create();
-
+            	
+		parent::Create();
+		
+		//Erstelle Profile
+		if (!IPS_VariableProfileExists('Volvo.Distance')) {
+			IPS_CreateVariableProfile('Volvo.Distance', 1);
+			IPS_SetVariableProfileValues('Volvo.Distance', 0, 0, 1);
+			IPS_SetVariableProfileText('Volvo.Distance', '', ' km');
+			IPS_SetVariableProfileIcon('Volvo.Distance', 'Distance');
+		}
+		if (!IPS_VariableProfileExists('Volvo.FuelAmount')) {
+			IPS_CreateVariableProfile('Volvo.FuelAmount', 1);
+			IPS_SetVariableProfileValues('Volvo.FuelAmount', 0, 60, 1);
+			IPS_SetVariableProfileText('Volvo.FuelAmount', '', ' l');
+			IPS_SetVariableProfileIcon('Volvo.FuelAmount', 'Drops');
+		}
+		if (!IPS_VariableProfileExists('Volvo.FuelLevel')) {
+			IPS_CreateVariableProfile('Volvo.FuelLevel', 1);
+			IPS_SetVariableProfileValues('Volvo.FuelLevel', 0, 100, 1);
+			IPS_SetVariableProfileText('Volvo.FuelLevel', '', ' %');
+			IPS_SetVariableProfileIcon('Volvo.FuelLevel', 'Gauge');
+		}
+			
+            	//Erstelle Variablen
+		if (!@$this->GetIDForIdent('positionLongitude')) {
+			$positionLongitude = $this->RegisterVariableString('positionLongitude', 'positionLongitude', '', 0);
+			IPS_SetIcon($positionLongitude, 'Move');
+		}
+		if (!@$this->GetIDForIdent('positionLatitude')) {
+			$positionLatitude = $this->RegisterVariableString('positionLatitude', 'positionLatitude', '', 0);
+			IPS_SetIcon($positionLatitude, 'Move');
+		}
+		if (!@$this->GetIDForIdent('positionTime')) {
+			$positionTime = $this->RegisterVariableString('positionTime', 'positionTime', '', 0);
+			IPS_SetIcon($positionTime, 'Clock');
+		}
+		if (!@$this->GetIDForIdent('positionPic')) {
+			$positionPic = $this->RegisterVariableString('positionPic', 'positionPic', '~HTMLBox', 0);
+			IPS_SetIcon($positionPic, 'Image');
+		}
+		if (!@$this->GetIDForIdent('fuelAmount')) {
+			$this->RegisterVariableInteger('fuelAmount', 'fuelAmount', 'Volvo.FuelAmount', 0);
+		}
+		if (!@$this->GetIDForIdent('fuelAmountLevel')) {
+			$this->RegisterVariableInteger('fuelAmountLevel', 'fuelAmountLevel', 'Volvo.FuelLevel', 0);
+		}
+		if (!@$this->GetIDForIdent('distanceToEmpty')) {
+			$this->RegisterVariableInteger('distanceToEmpty', 'distanceToEmpty', 'Volvo.Distance', 0);
+		}
+		if (!@$this->GetIDForIdent('odoMeter')) {
+			$this->RegisterVariableInteger('odoMeter', 'odoMeter', 'Volvo.Distance', 0);
+		}
+		if (!@$this->GetIDForIdent('carLocked')) {
+			$this->RegisterVariableBoolean('carLocked', 'carLocked', '~Lock', 0);
+		}
+				
             	$this->RegisterPropertyString('GoogleApiKey', "");
             	$this->RegisterPropertyString('Username', "");
 		$this->RegisterPropertyString('Password', "");
@@ -14,64 +68,16 @@ declare(strict_types=1);
 			
 		$this->RegisterTimer('UpdateTimer', 0, 'VOC_Update($_IPS[\'TARGET\']);');
         }
+	    
+	public function Destroy() {
+		
+		parent::Destroy();
+	}
 
         public function ApplyChanges() {
-            parent::ApplyChanges();
-
-			$this->SetTimerInterval('UpdateTimer', $this->ReadPropertyInteger('Interval') * 60 * 1000);
-			
-			//Erstelle Profile
-			if (!IPS_VariableProfileExists('Volvo.Distance')) {
-				IPS_CreateVariableProfile('Volvo.Distance', 1);
-				IPS_SetVariableProfileValues('Volvo.Distance', 0, 0, 1);
-				IPS_SetVariableProfileText('Volvo.Distance', '', ' km');
-				IPS_SetVariableProfileIcon('Volvo.Distance', 'Distance');
-			}
-			if (!IPS_VariableProfileExists('Volvo.FuelAmount')) {
-				IPS_CreateVariableProfile('Volvo.FuelAmount', 1);
-				IPS_SetVariableProfileValues('Volvo.FuelAmount', 0, 60, 1);
-				IPS_SetVariableProfileText('Volvo.FuelAmount', '', ' l');
-				IPS_SetVariableProfileIcon('Volvo.FuelAmount', 'Drops');
-			}
-			if (!IPS_VariableProfileExists('Volvo.FuelLevel')) {
-				IPS_CreateVariableProfile('Volvo.FuelLevel', 1);
-				IPS_SetVariableProfileValues('Volvo.FuelLevel', 0, 100, 1);
-				IPS_SetVariableProfileText('Volvo.FuelLevel', '', ' %');
-				IPS_SetVariableProfileIcon('Volvo.FuelLevel', 'Gauge');
-			}
-			
-            //Erstelle Variablen
-			if (!@$this->GetIDForIdent('positionLongitude')) {
-				$positionLongitude = $this->RegisterVariableString('positionLongitude', 'positionLongitude', '', 0);
-				IPS_SetIcon($positionLongitude, 'Move');
-			}
-			if (!@$this->GetIDForIdent('positionLatitude')) {
-				$positionLatitude = $this->RegisterVariableString('positionLatitude', 'positionLatitude', '', 0);
-				IPS_SetIcon($positionLatitude, 'Move');
-			}
-			if (!@$this->GetIDForIdent('positionTime')) {
-				$positionTime = $this->RegisterVariableString('positionTime', 'positionTime', '', 0);
-				IPS_SetIcon($positionTime, 'Clock');
-			}
-			if (!@$this->GetIDForIdent('positionPic')) {
-				$positionPic = $this->RegisterVariableString('positionPic', 'positionPic', '~HTMLBox', 0);
-				IPS_SetIcon($positionPic, 'Image');
-			}
-			if (!@$this->GetIDForIdent('fuelAmount')) {
-				$this->RegisterVariableInteger('fuelAmount', 'fuelAmount', 'Volvo.FuelAmount', 0);
-			}
-			if (!@$this->GetIDForIdent('fuelAmountLevel')) {
-				$this->RegisterVariableInteger('fuelAmountLevel', 'fuelAmountLevel', 'Volvo.FuelLevel', 0);
-			}
-			if (!@$this->GetIDForIdent('distanceToEmpty')) {
-				$this->RegisterVariableInteger('distanceToEmpty', 'distanceToEmpty', 'Volvo.Distance', 0);
-			}
-			if (!@$this->GetIDForIdent('odoMeter')) {
-				$this->RegisterVariableInteger('odoMeter', 'odoMeter', 'Volvo.Distance', 0);
-			}
-			if (!@$this->GetIDForIdent('carLocked')) {
-				$this->RegisterVariableBoolean('carLocked', 'carLocked', '~Lock', 0);
-			}
+            	
+		parent::ApplyChanges();
+		$this->SetTimerInterval('UpdateTimer', $this->ReadPropertyInteger('Interval') * 60 * 1000);
         }
 
         public function RequestAction($Ident, $Value) {
