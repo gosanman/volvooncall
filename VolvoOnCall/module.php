@@ -61,8 +61,8 @@
 			$this->RegisterVariableBoolean('carLocked', 'carLocked', '~Lock', 0);
 		}
 				
-            	$this->RegisterPropertyString('GoogleApiKey', "");
-            	$this->RegisterPropertyString('Username', "");
+        $this->RegisterPropertyString('GoogleApiKey', "");
+        $this->RegisterPropertyString('Username', "");
 		$this->RegisterPropertyString('Password', "");
 		$this->RegisterPropertyInteger('Interval', 5);
 			
