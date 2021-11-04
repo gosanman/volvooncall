@@ -54,7 +54,7 @@ declare(strict_types=1);
 				IPS_SetIcon($positionTime, 'Clock');
 			}
 			if (!@$this->GetIDForIdent('positionPic')) {
-				$positionPic = $this->RegisterVariableString('positionPic', 'positionPic', '', 0);
+				$positionPic = $this->RegisterVariableString('positionPic', 'positionPic', '~HTMLBox', 0);
 				IPS_SetIcon($positionPic, 'Image');
 			}
 			if (!@$this->GetIDForIdent('fuelAmount')) {
